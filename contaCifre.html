@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore di cifre</title>
+</head>
+<body>
+    <h2>Conta le cifre di un numero</h2>
+    
+    <label for="numero">Inserisci un numero:</label>
+    <input type="text" id="numero" />
+    <button onclick="contaCifre()">Conta Cifre</button>
+
+    <p id="output"></p>
+
+    <script>
+        function contaCifre() {
+            
+            let numero = document.getElementById("numero").value;
+            
+            
+            if (/^\d+$/.test(numero)) {
+                let numeroCifre = numero.length;
+                document.getElementById("output").textContent = "Numero di cifre: " + numeroCifre;
+            } else {
+                document.getElementById("output").textContent = "Per favore, inserisci un numero valido.";
+            }
+        }
+    </script>
+</body>
+</html>
