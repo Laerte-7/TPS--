@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genera Sequenze</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Genera Coppie di Numeri</h1>
+    <input type="number" id="numero" placeholder="Inserisci un numero" />
+    <button onclick="generaSequenza()">Genera</button>
+
+    <div id="output"></div>
+
+    <script>
+        function generaSequenza() {
+            const numero = parseInt(document.getElementById("numero").value);
+            
+            
+            let output = "";
+            for (let i = 0; i <= numero; i++) {
+                output += `${i}-${numero - i}<br>`;
+            }
+            document.getElementById("output").innerHTML = output;
+        }
+    </script>
+</body>
+</html>
