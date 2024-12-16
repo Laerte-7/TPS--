@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordinamento Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output-div {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .output-div h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .output-div p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Ordinamento Array</h2>
+    <p>Inserisci i numeri separati da spazio (es: 4 2 8 1 7):</p>
+    <input type="text" id="inputNumbers" placeholder="Inserisci numeri">
+    <button onclick="ordinaArray()">Ordina Array</button>
+
+    
+    <div id="crescente" class="output-div">
+        <h3>Ordine Crescente:</h3>
+        <p id="risultatoCrescente"></p>
+    </div>
+
+    <div id="decrescente" class="output-div">
+        <h3>Ordine Decrescente:</h3>
+        <p id="risultatoDecrescente"></p>
+    </div>
+</div>
+
+<script>
+    function ordinaArray() {
+        
+        const num = document.getElementById('inputNumbers').value.split(' ').map(Number);
+
+
+        
+        const arrayCrescente = [...num].sort((a, b) => a - b);
+        const arrayDecrescente = [...num].sort((a, b) => b - a);
+
+        
+        document.getElementById('risultatoCrescente').textContent = arrayCrescente.join(' ');
+        document.getElementById('risultatoDecrescente').textContent = arrayDecrescente.join(' ');
+    }
+</script>
+
+</body>
+</html>
