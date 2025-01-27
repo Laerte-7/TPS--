@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grafico Migranti 2</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: white;
+        }
+		
+    </style>
+</head>
+<body>
+    <h1>Grafico Migranti 2</h1>
+    <table id="tabellaDati"></table>
+    <canvas id="graficoSbarchi" width="800" height="400"></canvas>
+
+    <script>
+        const datiCSV = `
+		Anno,Sbarchi
+		2017,119369
+		2018,23270
+		2019,11471
+		2020,34154
+		2021,67277
+		2022,105131`;
+
+        const righe = datiCSV.trim().split("\n");
+        const intestazione = righe[0].split(",");
+        const dati = righe.slice(1).map(riga => riga.split(","));
+
+        const tab = document.getElementById("tabellaDati");
+        const canvas = document.getElementById("graficoSbarchi");
+        const ctx = canvas.getContext("2d");
+
+        function creaTabella() {
+            const intestazioneRow = document.createElement("tr");
+            intestazione.forEach(colonna => {
+                const th = document.createElement("th");
+                th.textContent = colonna;
+                intestazioneRow.appendChild(th);
+            });
+            tab.appendChild(intestazioneRow);
+
+            dati.forEach(riga => {
+                const tr = document.createElement("tr");
+                riga.forEach(valore => {
+                    const td = document.createElement("td");
+                    td.textContent = valore;
+                    tr.appendChild(td);
+                });
+                tab.appendChild(tr);
+            });
+        }
+
+        function disegnaGrafico() {
+            const anni = dati.map(riga => riga[0]);
+            const sbarchi = dati.map(riga => Number(riga[1]));
+            const maxSbarchi = Math.max(...sbarchi);
+
+            const margine = 50;
+            const larghezzaGrafico = canvas.width - 2 * margine;
+            const altezzaGrafico = canvas.height - 2 * margine;
+            const distanzaTraPunti = larghezzaGrafico / (anni.length - 1);
+
+            ctx.beginPath();
+            sbarchi.forEach((valore, index) => {
+                const x = margine + index * distanzaTraPunti;
+                const y = canvas.height - margine - (valore / maxSbarchi) * altezzaGrafico;
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+                ctx.arc(x, y, 3, 0, Math.PI * 2); 
+            });
+
+            ctx.strokeStyle = "blue";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            anni.forEach((anno, index) => {
+                const x = margine + index * distanzaTraPunti;
+                ctx.fillStyle = "black";
+                ctx.fillText(anno, x - 10, canvas.height - margine + 15);
+            });
+        }
+
+        creaTabella();
+        disegnaGrafico();
+    </script>
+</body>
+</html>

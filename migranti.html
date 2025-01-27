@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabella da CSV</title>
+</head>
+<body>
+  <h1>Tabella Migranti</h1>
+  <input type="file" onchange="showFile(this)">
+  <div id="output"></div>
+
+  <script>
+    function showFile(input) {
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        const content = event.target.result;
+        const rows = content.split('\n');
+        let table = '<table border="1" cellspacing="0" cellpadding="5">';
+
+        rows.forEach((row, index) => {
+          const cells = row.split(',');
+          table += '<tr>';
+
+          cells.forEach(cell => {
+            if (index === 0) {
+              table += `<th>${cell.trim()}</th>`;
+            } else {
+              table += `<td>${cell.trim()}</td>`;
+            }
+          });
+
+          table += '</tr>';
+        });
+
+        table += '</table>';
+        document.getElementById('output').innerHTML = table;
+      };
+
+      reader.readAsText(file);
+    }
+  </script>
+</body>
+</html>
