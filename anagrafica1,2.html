@@ -25,19 +25,31 @@
     </form>
 
     <script>
-        document.getElementById("userForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+        
+        const datiAccount = []
+        function prelevaDati(){
+            const nome = document.getElementById("nome").value;
+            const cognome = document.getElementById("cognome").value;
+            const eta = document.getElementById("età").value;
+            const indirizzo = document.getElementById("indirizzo").value;
             
-            const utente = {
-                nome: document.getElementById("nome").value,
-                cognome: document.getElementById("cognome").value,
-                eta: document.getElementById("eta").value,
-                indirizzo: document.getElementById("indirizzo").value
-            };
+            account = {Nome:nome,Cognome:cognome,Eta:eta,Indirizzo:indirizzo};
+            datiAccount.push(account);
+            document.getElementById("myForm").reset();
+        }
+        function passaAllaPaginaSuccessiva(){
+            const nome = document.getElementById("nome").value;
+            const cognome = document.getElementById("cognome").value;
+            const eta = document.getElementById("età").value;
+            const indirizzo = document.getElementById("indirizzo").value;
             
-            localStorage.setItem("utente", JSON.stringify(utente));
-            window.location.href = "anagrafica2,2.html";
-        });
+            account = {Nome:nome,Cognome:cognome,Eta:eta,Indirizzo:indirizzo};
+            datiAccount.push(account);
+            document.getElementById("myForm").reset();
+            localStorage.setItem("datiAccount", JSON.stringify(datiAccount));
+            window.location.href = "RiceviDati.html";
+        }
+	
     </script>
 </body>
 </html>
