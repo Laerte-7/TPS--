@@ -1,4 +1,4 @@
-
+<-DA FINIRE->
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -26,27 +26,27 @@
 
     <script>
         
-        const datiAccount = []
-        function prelevaDati(){
+        const dati = []
+        function registra(){
             const nome = document.getElementById("nome").value;
             const cognome = document.getElementById("cognome").value;
             const eta = document.getElementById("età").value;
             const indirizzo = document.getElementById("indirizzo").value;
             
             account = {Nome:nome,Cognome:cognome,Eta:eta,Indirizzo:indirizzo};
-            datiAccount.push(account);
+            dati.push(account);
             document.getElementById("myForm").reset();
         }
-        function passaAllaPaginaSuccessiva(){
+        function prossimaPagina(){
             const nome = document.getElementById("nome").value;
             const cognome = document.getElementById("cognome").value;
             const eta = document.getElementById("età").value;
             const indirizzo = document.getElementById("indirizzo").value;
             
             account = {Nome:nome,Cognome:cognome,Eta:eta,Indirizzo:indirizzo};
-            datiAccount.push(account);
+            dati.push(account);
             document.getElementById("myForm").reset();
-            localStorage.setItem("datiAccount", JSON.stringify(datiAccount));
+            localStorage.setItem("datiAccount", JSON.stringify(dati));
             window.location.href = "anagrafica2,2.html";
         }
 	
