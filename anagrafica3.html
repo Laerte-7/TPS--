@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carica File Anagrafica</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h2>Carica il file JSON con i dati anagrafici</h2>
+    <input type="file" id="fileInput">
+    <table id="tabella">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Età</th>
+                
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        const dati = JSON.parse(e.target.result);
+                        visualizzaDati(dati);
+                    } catch (error) {
+                        console.error("Errore nel parsing del JSON", error);
+                    }
+                };
+
+                reader.readAsText(file);
+            }
+        });
+
+        function visualizzaDati(dati) {
+            const tbody = document.querySelector("#tabella tbody");
+            tbody.innerHTML = ""; 
+            
+            dati.forEach(persona => {
+                const riga = document.createElement("tr");
+                riga.innerHTML = `
+                    <td>${persona.nome}</td>
+                    <td>${persona.cognome}</td>
+                    <td>${persona.eta}</td>
+                    
+                `;
+                tbody.appendChild(riga);
+            });
+        }
+    </script>
+
+</body>
+</html>
