@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Inserimento Dati Utente</title>
+</head>
+<body>
+    <h1>Inserisci i tuoi dati</h1>
+    <form id="userForm">
+        <label>Nome: <input type="text" id="nome" required></label><br><br>
+        <label>Cognome: <input type="text" id="cognome" required></label><br><br>
+        <label>Età: <input type="number" id="eta" required></label><br><br>
+        <label>Indirizzo: <input type="text" id="indirizzo" required></label><br><br>
+        <button type="submit">Invia</button>
+    </form>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const utente = {
+                nome: document.getElementById('nome').value,
+                cognome: document.getElementById('cognome').value,
+                eta: document.getElementById('eta').value,
+                indirizzo: document.getElementById('indirizzo').value
+            };
+
+            localStorage.setItem('utente', JSON.stringify(utente));
+
+            window.location.href = "risultati.html";
+        });
+    </script>
+</body>
+</html>
