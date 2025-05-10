@@ -6,7 +6,7 @@
     <style>
         table {
             border-collapse: collapse;
-            width: 50%;
+            width: 80%;
             margin-top: 20px;
         }
         th, td {
@@ -14,40 +14,43 @@
             padding: 8px;
             text-align: left;
         }
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
-    <h1>Dati Inseriti</h1>
+    <h1>Elenco Utenti Inseriti</h1>
     <div id="tabellaRisultati"></div>
 
     <script>
-        const datiUtente = JSON.parse(localStorage.getItem('utente'));
+        const utenti = JSON.parse(localStorage.getItem('utenti'));
 
-        if (datiUtente) {
-            const tabella = `
+        if (utenti && utenti.length > 0) {
+            let tabella = `
                 <table>
                     <tr>
-                        <th>Campo</th>
-                        <th>Valore</th>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Età</th>
+                        <th>Indirizzo</th>
                     </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>${datiUtente.nome}</td>
-                    </tr>
-                    <tr>
-                        <td>Cognome</td>
-                        <td>${datiUtente.cognome}</td>
-                    </tr>
-                    <tr>
-                        <td>Età</td>
-                        <td>${datiUtente.eta}</td>
-                    </tr>
-                    <tr>
-                        <td>Indirizzo</td>
-                        <td>${datiUtente.indirizzo}</td>
-                    </tr>
-                </table>
             `;
+
+            utenti.forEach((utente, index) => {
+                tabella += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${utente.nome}</td>
+                        <td>${utente.cognome}</td>
+                        <td>${utente.eta}</td>
+                        <td>${utente.indirizzo}</td>
+                    </tr>
+                `;
+            });
+
+            tabella += `</table>`;
             document.getElementById('tabellaRisultati').innerHTML = tabella;
         } else {
             document.getElementById('tabellaRisultati').innerHTML = "<p>Nessun dato trovato.</p>";
@@ -55,3 +58,4 @@
     </script>
 </body>
 </html>
+
