@@ -2,59 +2,42 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Risultati Utente</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <title>Inserimento Dati Utente</title>
 </head>
 <body>
-    <h1>Elenco Utenti Inseriti</h1>
-    <div id="tabellaRisultati"></div>
+    <h1>Inserisci i tuoi dati</h1>
+    <form id="userForm">
+        <label for="nome">Nome: <input type="text" id="nome" required></label><br><br>
+        <label for="cognome">Cognome: <input type="text" id="cognome" required></label><br><br>
+        <label for="eta">Età: <input type="number" id="eta" required min="0"></label><br><br>
+        <label for="indirizzo">Indirizzo: <input type="text" id="indirizzo" required></label><br><br>
+        <button type="submit">Invia</button>
+    </form>
 
     <script>
-        const utenti = JSON.parse(localStorage.getItem('utenti'));
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        if (utenti && utenti.length > 0) {
-            let tabella = `
-                <table>
-                    <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Cognome</th>
-                        <th>Età</th>
-                        <th>Indirizzo</th>
-                    </tr>
-            `;
+            const nuovoUtente = {
+                nome: document.getElementById('nome').value.trim(),
+                cognome: document.getElementById('cognome').value.trim(),
+                eta: document.getElementById('eta').value,
+                indirizzo: document.getElementById('indirizzo').value.trim()
+            };
 
-            utenti.forEach((utente, index) => {
-                tabella += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${utente.nome}</td>
-                        <td>${utente.cognome}</td>
-                        <td>${utente.eta}</td>
-                        <td>${utente.indirizzo}</td>
-                    </tr>
-                `;
-            });
+            // Ottieni l'elenco esistente o inizializza un array vuoto
+            let utenti = JSON.parse(localStorage.getItem('utenti')) || [];
 
-            tabella += `</table>`;
-            document.getElementById('tabellaRisultati').innerHTML = tabella;
-        } else {
-            document.getElementById('tabellaRisultati').innerHTML = "<p>Nessun dato trovato.</p>";
-        }
+            // Aggiungi il nuovo utente
+            utenti.push(nuovoUtente);
+
+            // Salva nuovamente la collezione aggiornata
+            localStorage.setItem('utenti', JSON.stringify(utenti));
+
+            // Reindirizza alla pagina dei risultati
+            window.location.href = "risultati.html";
+        });
     </script>
 </body>
 </html>
+
