@@ -25,16 +25,16 @@
                 indirizzo: document.getElementById('indirizzo').value.trim()
             };
 
-            // Ottieni l'elenco esistente o inizializza un array vuoto
+            
             let utenti = JSON.parse(localStorage.getItem('utenti')) || [];
 
-            // Aggiungi il nuovo utente
+          
             utenti.push(nuovoUtente);
 
-            // Salva nuovamente la collezione aggiornata
+           
             localStorage.setItem('utenti', JSON.stringify(utenti));
 
-            // Reindirizza alla pagina dei risultati
+        
             window.location.href = "risultati.html";
         });
     </script>
