@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .page { display: none; padding: 20px; }
+        .active { display: block; }
+        .thumbnail { display: inline-block; margin: 10px; cursor: pointer; }
+        .thumbnail img { width: 150px; height: 150px; object-fit: cover; }
+        .cart { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div id="uploadPage" class="page active">
+        <h1>Carica file JSON</h1>
+        <input type="file" id="jsonFile">
+        <button onclick="loadFile()">Carica</button>
+    </div><div id="welcomePage" class="page">
+    <h1>Benvenuto nel Tech Store!</h1>
+    <button onclick="showPage('productsPage')">Vai ai prodotti</button>
+</div>
+
+<div id="productsPage" class="page">
+    <h1>Prodotti</h1>
+    <div id="thumbnails"></div>
+    <button onclick="showPage('cartPage')">Vai al carrello</button>
+</div>
+
+<div id="detailPage" class="page">
+    <h1>Dettagli Prodotto</h1>
+    <div id="productDetail"></div>
+    <button onclick="addToCart()">Aggiungi al carrello</button>
+    <button onclick="showPage('productsPage')">Torna ai prodotti</button>
+</div>
+
+<div id="cartPage" class="page">
+    <h1>Carrello</h1>
+    <div id="cartItems"></div>
+    <button onclick="showPage('receiptPage')">Vai allo scontrino</button>
+    <button onclick="showPage('productsPage')">Continua a comprare</button>
+</div>
+
+<div id="receiptPage" class="page">
+    <h1>Scontrino</h1>
+    <div id="receipt"></div>
+    <button onclick="showPage('productsPage')">Torna ai prodotti</button>
+</div>
+
+<script>
+    let data = {};
+    let cart = [];
+    let currentProduct = null;
+
+    const sampleProducts = [
+        { marca: 'Samsung', modello: 'S13', descrizione: 'RAM 8GB, HD 128GB, Fotocamera 50MP' },
+        { marca: 'Apple', modello: 'iPhone 15', descrizione: 'RAM 6GB, HD 256GB, Fotocamera 48MP' },
+        { marca: 'Xiaomi', modello: 'Redmi Note 10', descrizione: 'RAM 6GB, HD 128GB, Fotocamera 64MP' },
+        { marca: 'OnePlus', modello: '11', descrizione: 'RAM 8GB, HD 256GB, Fotocamera 50MP' }
+    ];
+
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
+    function loadFile() {
+        const fileInput = document.getElementById('jsonFile');
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = e => {
+            data = JSON.parse(e.target.result);
+            showPage('welcomePage');
+            renderThumbnails();
+        };
+        reader.readAsText(file);
+    }
+
+    function renderThumbnails() {
+        const container = document.getElementById('thumbnails');
+        container.innerHTML = '';
+        sampleProducts.forEach((prod, index) => {
+            const div = document.createElement('div');
+            div.className = 'thumbnail';
+            div.innerHTML = `<img src='https://via.placeholder.com/150?text=${prod.modello}'><br>${prod.modello}`;
+            div.onclick = () => showDetail(prod);
+            container.appendChild(div);
+        });
+    }
+
+    function showDetail(prod) {
+        currentProduct = prod;
+        const detailDiv = document.getElementById('productDetail');
+        detailDiv.innerHTML = `
+            <h2>${prod.marca} ${prod.modello}</h2>
+            <p>${prod.descrizione}</p>
+            <img src='https://via.placeholder.com/300?text=${prod.modello}'>
+        `;
+        showPage('detailPage');
+    }
+
+    function addToCart() {
+        if (currentProduct) {
+            cart.push(currentProduct);
+            alert('Prodotto aggiunto al carrello!');
+        }
+    }
+
+    function renderCart() {
+        const cartDiv = document.getElementById('cartItems');
+        cartDiv.innerHTML = cart.map(p => `<p>${p.marca} ${p.modello}</p>`).join('');
+    }
+
+    function renderReceipt() {
+        const receiptDiv = document.getElementById('receipt');
+        receiptDiv.innerHTML = cart.map(p => `<p>${p.marca} ${p.modello} - ${p.descrizione}</p>`).join('');
+    }
+
+    document.getElementById('cartPage').addEventListener('click', renderCart);
+    document.getElementById('receiptPage').addEventListener('click', renderReceipt);
+</script>
+
+</body>
+</html>
