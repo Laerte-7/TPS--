@@ -121,7 +121,9 @@
 
       if (this.readyState == 4 && this.status == 200) {
 
-        var myObj = JSON.parse(this.responseText);
+        f (this.readyState == 4 && this.status == 200) {
+                var utenti = JSON.parse(this.responseText);
+                var stampa = "";
 
     stampa += "<tr>" + myObj.nome + "</tr>"
 
