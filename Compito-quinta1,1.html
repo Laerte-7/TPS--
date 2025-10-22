@@ -76,11 +76,11 @@
 
         var myObj = JSON.parse(this.responseText);
 
-    stampa += "<h1>" + myObj.nome + "</h1><br>"
+    stampa += "<th>" + myObj.nome + "</th><br>"
 
      for (x in myObj.auto) {
 
-         stampa +="<h3>" + myObj.auto[x].tipo + ": " + myObj.auto[x].nome + "</h3>";
+         stampa +="<th>" + myObj.auto[x].tipo + ": " + myObj.auto[x].nome + "</th>";
 
       }
 
