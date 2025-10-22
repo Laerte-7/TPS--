@@ -1,11 +1,11 @@
 [
-'{"cognome":"Doe", "name":"John", "data_nascita":"1999" }'
-'{"cognome":"Rossi", "name":"Marco", "data_nascita":"1978" }'
-'{"cognome":"Ferrara", "name":"Edoardo", "data_nascita":"2007" }'
-'{"cognome":"Frasca", "name":"Emanuele", "data_nascita":"1979" }'
-'{"cognome":"De Marco", "name":"Gennaro", "data_nascita":"2002" }' 
-'{"cognome":"Bernardi", "name":"Marcello", "data_nascita":"1951" }'
-'{"cognome":"Acuti", "name":"Lara", "data_nascita":"1984" }'
-'{"cognome":"Mazzi", "name":"Sara", "data_nascita":"1991" }'
-'{"cognome":"Bronte", "name":"Roberta", "data_nascita":"2012" }'
+  {"cognome":"Doe", "nome":"John", "data_nascita":"1999"},
+  {"cognome":"Rossi", "nome":"Marco", "data_nascita":"1978"},
+  {"cognome":"Ferrara", "nome":"Edoardo", "data_nascita":"2007"},
+  {"cognome":"Frasca", "nome":"Emanuele", "data_nascita":"1979"},
+  {"cognome":"De Marco", "nome":"Gennaro", "data_nascita":"2002"},
+  {"cognome":"Bernardi", "nome":"Marcello", "data_nascita":"1951"},
+  {"cognome":"Acuti", "nome":"Lara", "data_nascita":"1984"},
+  {"cognome":"Mazzi", "nome":"Sara", "data_nascita":"1991"},
+  {"cognome":"Bronte", "nome":"Roberta", "data_nascita":"2012"}
 ]
