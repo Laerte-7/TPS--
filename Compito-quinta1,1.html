@@ -78,8 +78,9 @@ function filtra() {
 
 function maggiorenni() {
   var risultato = [];
+  const d = new Date();
   for (var i = 0; i < utenti.length; i++) {
-    if (2025 - utenti[i].anno >= 18) {
+    if (d.getFullYear() - utenti[i].anno >= 18) {
       risultato.push(utenti[i]);
     }
   }
