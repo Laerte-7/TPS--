@@ -41,9 +41,9 @@ richiesta.onload = function() {
 
     
     for (let i = 0; i < elementi.length; i++) {
-      const nome = elementi[i].getElementsByTagName("nome")[0].textContent;
-      const cognome = elementi[i].getElementsByTagName("cognome")[0].textContent;
-      const anno = parseInt(elementi[i].getElementsByTagName("anno")[0].textContent);
+      var nome = elementi[i].getElementsByTagName("nome")[0].textContent;
+      var cognome = elementi[i].getElementsByTagName("cognome")[0].textContent;
+      var anno = parseInt(elementi[i].getElementsByTagName("anno")[0].textContent);
       utenti.push({ nome, cognome, anno });
     }
   
