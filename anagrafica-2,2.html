@@ -35,7 +35,18 @@ var utenti = [];
 var richiesta = new XMLHttpRequest();
 richiesta.open("GET", "anagrafica.xml");
 richiesta.onload = function() {
-  utenti = new DOMParser(richiesta.responcetext);
+  const xml = richiesta.responseXML;
+    const elementi = xml.getElementsByTagName("utente");
+    utenti = [];
+
+    
+    for (let i = 0; i < elementi.length; i++) {
+      const nome = elementi[i].getElementsByTagName("nome")[0].textContent;
+      const cognome = elementi[i].getElementsByTagName("cognome")[0].textContent;
+      const anno = parseInt(elementi[i].getElementsByTagName("anno")[0].textContent);
+      utenti.push({ nome, cognome, anno });
+    }
+  
   mostra(utenti);
 };
 richiesta.send();
