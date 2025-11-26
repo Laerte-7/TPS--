@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <title>E-COMMERCE 2.22: you can (not) sell drugs</title>
+</head>
+<body>
+    <div id="uploadPage" class="page active">
+        <h1>Carica file JSON</h1>
+        <input type="file" id="jsonFile">
+        <button onclick="loadFile()">Carica</button>
+    </div>
+    <div id="welcomePage" class="page">
+        <h1>Benvenuto nel Tech Store!</h1>
+        <button onclick="showPage('productsPage')">Vai ai prodotti</button>
+    </div>
 
+    <div id="productsPage" class="page">
+        <h1>Prodotti</h1>
+        <div id="thumbnails"></div>
+        <button onclick="showPage('cartPage')">Vai al carrello</button>
+    </div>
+
+    <div id="detailPage" class="page">
+        <h1>Dettagli Prodotto</h1>
+    <div id="productDetail"></div>
+        <button onclick="addToCart()">Aggiungi al carrello</button>
+        <button onclick="showPage('productsPage')">Torna ai prodotti</button>
+    </div>
+
+    <div id="cartPage" class="page">
+        <h1>Carrello</h1>
+        <div id="cartItems"></div>
+        <button onclick="showPage('receiptPage')">Vai allo scontrino</button>
+        <button onclick="showPage('productsPage')">Continua a comprare</button>
+    </div>
+
+    <div id="receiptPage" class="page">
+        <h1>Scontrino</h1>
+        <div id="receipt"></div>
+        <button onclick="showPage('productsPage')">Torna ai prodotti</button>
+    </div>
+
+</body>
