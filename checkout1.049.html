@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+
+<header>
+    <h1>Checkout</h1>
+</header>
+
+<main>
+    <section id="order-summary">
+        <h2>Riepilogo Ordine</h2>
+        <p id="summary-product">Prodotto:</p>
+        <p id="summary-quantity">Quantità:</p>
+        <p id="summary-total">Totale:</p>
+    </section>
+
+    <section id="customer-data">
+        <h2>Dati Cliente</h2>
+
+        <form action="receipt.html" method="get">
+            <label>
+                Nome:
+                <input type="text" name="name" required>
+            </label>
+
+            <label>
+                Email:
+                <input type="email" name="email" required>
+            </label>
+
+            <button type="submit">Conferma Acquisto</button>
+        </form>
+    </section>
+</main>
+
+</body>
+</html>
