@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Scontrino</title>
+</head>
+<body>
+
+<header>
+    <h1>Scontrino di Acquisto</h1>
+</header>
+
+<main>
+    <section id="receipt">
+        <p><strong>Cliente:</strong> <span id="receipt-name"></span></p>
+        <p><strong>Email:</strong> <span id="receipt-email"></span></p>
+
+        <hr>
+
+        <p><strong>Prodotto:</strong> <span id="receipt-product"></span></p>
+        <p><strong>Quantità:</strong> <span id="receipt-quantity"></span></p>
+        <p><strong>Totale:</strong> €<span id="receipt-total"></span></p>
+
+        <p>Grazie per l'acquisto!</p>
+    </section>
+
+    <!-- Qui potrai agganciare JS per generare il PDF -->
+    <button id="download-pdf">Scarica PDF</button>
+</main>
+
+</body>
+</html>
