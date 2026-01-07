@@ -1,8 +1,41 @@
 <!DOCTYPE html>
+<html lang="it">
 <head>
-    <title>E-COMMERCE 2.22: you can (not) sell drugs</title>
+    <meta charset="UTF-8">
+    <title>Catalogo Prodotti</title>
 </head>
 <body>
-    
+
+<header>
+    <h1>Catalogo Online</h1>
+    <p>Seleziona una categoria</p>
+</header>
+
+<main>
+    <section id="categories">
+        <!-- Popolato via JS -->
+        <article class="category" data-source="xml">
+            <h2>Elettronica (XML)</h2>
+            <a href="category.html?type=xml">Vai alla categoria</a>
+        </article>
+
+        <article class="category" data-source="json">
+            <h2>Libri (JSON)</h2>
+            <a href="category.html?type=json">Vai alla categoria</a>
+        </article>
+
+        <article class="category" data-source="csv">
+            <h2>Abbigliamento (CSV)</h2>
+            <a href="category.html?type=csv">Vai alla categoria</a>
+        </article>
+
+        <article class="category" data-source="txt">
+            <h2>Accessori (TXT)</h2>
+            <a href="category.html?type=txt">Vai alla categoria</a>
+        </article>
+    </section>
+</main>
 
 </body>
+</html>
+
